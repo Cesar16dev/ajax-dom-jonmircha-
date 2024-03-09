@@ -1,17 +1,12 @@
-import { ajax } from "./helpers/ajax.js";
 import api from "./helpers/wp_api.js";
+import { ajax } from "./helpers/ajax.js";
+import { Header } from "./components/Header.js";
+import { Loader } from "./components/Loader.js";
+import { SearchForm } from "./components/SearchForm.js";
 
 export function App() {
-  document.getElementById(
-    "root"
-  ).innerHTML = `<h1> Bienvenidos a mi 1er SPA con Vanilla Js</h1>`;
+  const d = document,
+    $root = d.getElementById("root");
+  $root.appendChild(Header());
+  $root.appendChild(Loader());
 }
-
-console.log(api);
-
-ajax({
-  url: api.POSTS,
-  cbSuccess: (posts) => {
-    console.log(posts);
-  },
-});
