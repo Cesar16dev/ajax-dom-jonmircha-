@@ -4,6 +4,7 @@ import { Header } from "./components/Header.js";
 import { Loader } from "./components/Loader.js";
 import { SearchForm } from "./components/SearchForm.js";
 import { Posts } from "./components/Posts.js";
+import { PostCard } from "./components/PostCard.js";
 
 export function App() {
   const d = document,
@@ -16,6 +17,10 @@ export function App() {
     url: api.POST,
     cbSuccess: (posts) => {
       console.log(posts);
+      let html = "";
+      posts.forEach((post) => (html += PostCard(post)));
+      d.querySelector(".loader").style.display = "none";
+      d.getElementById("posts").innerHTML = html;
     },
   });
 }
