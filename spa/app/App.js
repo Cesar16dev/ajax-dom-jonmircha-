@@ -3,10 +3,19 @@ import { ajax } from "./helpers/ajax.js";
 import { Header } from "./components/Header.js";
 import { Loader } from "./components/Loader.js";
 import { SearchForm } from "./components/SearchForm.js";
+import { Posts } from "./components/Posts.js";
 
 export function App() {
   const d = document,
     $root = d.getElementById("root");
   $root.appendChild(Header());
+  $root.appendChild(Posts());
   $root.appendChild(Loader());
+
+  ajax({
+    url: api.POST,
+    cbSuccess: (posts) => {
+      console.log(posts);
+    },
+  });
 }
